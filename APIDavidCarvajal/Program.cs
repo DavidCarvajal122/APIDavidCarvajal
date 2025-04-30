@@ -1,6 +1,9 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
+using APIDavidCarvajal.Data;
 var builder = WebApplication.CreateBuilder(args);
+builder.Services.AddDbContext<APIDavidCarvajalContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("APIDavidCarvajalContext") ?? throw new InvalidOperationException("Connection string 'APIDavidCarvajalContext' not found.")));
 builder.Services.AddDbContext<SQLServerContextSJCP>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("SQLServerContextSJCP") ?? throw new InvalidOperationException("Connection string 'SQLServerContextSJCP' not found.")));
 
